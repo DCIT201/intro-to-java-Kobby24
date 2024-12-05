@@ -1,53 +1,53 @@
 import java.util.Scanner;
 
 public class TemperatureConverter {
-
+    static Scanner scanner = new Scanner(System.in);
+    static void celsiusToFahrenheit(double celsius) {
+        if (celsius >= -273.15 && celsius <= 100) {
+            double fahrenheit = (celsius * 9 / 5) + 32;
+            System.out.printf("%s°C is equivalent to %s°F", celsius, fahrenheit);
+        }
+        else {
+            System.out.println("Invalid temperature");
+        }
+    }
+    static void fahrenheitToCelsius(double fahrenheit) {
+        if (fahrenheit >= -459.67 && fahrenheit <= 212) {
+            double celsius = (fahrenheit - 32) * 5 / 9;
+            System.out.printf("%s°F is equivalent to %s°C",fahrenheit,celsius);
+        }
+        else {
+            System.out.println("Invalid temperature");
+        }
+    }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("1. Convert Celsius to Fahrenheit.\n" + "2.Convert Fahrenheit to Celsius.");
+        int decision = scanner.nextInt();
 
-        // Display options to user
-        System.out.println("Choose an option:");
-        System.out.println("1. Convert Celsius to Fahrenheit");
-        System.out.println("2. Convert Fahrenheit to Celsius");
+        if (decision == 1) {
+            System.out.println("Please enter the temperature in Celsius: ");
+            try{
+                double temp = scanner.nextDouble();
+                celsiusToFahrenheit(temp);
+            }
+            catch (Exception e) {
+                System.out.println("Invalid Input");
+            }
 
-        int choice = 0;
-        // Validate the choice input
-        while (true) {
+
+        }
+        else if (decision == 2) {
+            System.out.println("Please enter the temperature in Fahrenheit: ");
             try {
-                choice = Integer.parseInt(scanner.nextLine());
-                if (choice == 1 || choice == 2) {
-                    break; // valid input
-                } else {
-                    System.out.println("Invalid choice. Please enter 1 or 2.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number (1 or 2).");
+                double temp = scanner.nextDouble();
+                fahrenheitToCelsius(temp);
+            }
+            catch (Exception e) {
+                System.out.println("Invalid Input");
             }
         }
-
-        double temperature = 0;
-        // Validate temperature input
-        while (true) {
-            try {
-                System.out.print("Enter the temperature: ");
-                temperature = Double.parseDouble(scanner.nextLine());
-                break; // valid temperature input
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid temperature input. Please enter a valid number for temperature.");
-            }
+        else {
+            System.out.println("Invalid input.");
         }
-
-        // Perform the conversion based on user choice
-        if (choice == 1) {
-            // Celsius to Fahrenheit conversion
-            double fahrenheit = (temperature * 9/5) + 32;
-            System.out.printf("%.2f Celsius is %.2f Fahrenheit.%n", temperature, fahrenheit);
-        } else if (choice == 2) {
-            // Fahrenheit to Celsius conversion
-            double celsius = (temperature - 32) * 5/9;
-            System.out.printf("%.2f Fahrenheit is %.2f Celsius.%n", temperature, celsius);
-        }
-
-        scanner.close(); // Close scanner after use
     }
 }
