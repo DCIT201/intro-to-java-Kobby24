@@ -49,5 +49,6 @@ public class TemperatureConverter {
         else {
             System.out.println("Invalid input.");
         }
+        scanner.close();
     }
 }
